@@ -1,4 +1,4 @@
-$( document ).ready();
+$( document ).ready( onReady );
 console.log( 'JQ' );
 
 // event listeners
@@ -9,34 +9,44 @@ function onReady() {
   $( '#divide' ).on( 'click', operatorFunc );
   $( '#equals' ).on( 'click', equalFunc );
   $( '#clearButton' ).on( 'click', clearFunc );
-}
+} // end onReady
 
 function operatorFunc(){
+  var userInputs = {
+    xNum: $( '#inputOne' ).val(),
+    yNum: $( '#inputTwo' ).val(),
+    operator: $(this).on('click')
+ };
 
-}
+ $.ajax({
+   url: '/calc',
+   method: 'POST',
+   data: userInputs,
+   success: function ( response ) {
+     console.log (response);
+     res.sendStatus( 200 );
+   }
+ });
+
+ $.ajax({
+   url: '/calc',
+   method: 'GET',
+   success: function( response ) {
+     console.log( response );
+   }
+ });
+} // end operatorFunc
+
+
+
 
 function equalFunc() {
-  
-}
 
-// $.ajax({
-//   url: '/calc',
-//   method: 'POST',
-//   data: objectToSend,
-//   success: function ( response ) {
-//     console.log (response);
-//   }
-// });
-//
-// $.ajax({
-//   url: '/calc',
-//   method: 'GET',
-//   success: function( response ) {
-//     console.log( response );
-//   }
-// });
-
+} // end equalFunc
 
 function clearFunc() {
-
-}
+  console.log('clearFunc');
+  $('#inputOne').empty();
+  $('#inputTwo').empty();
+  // $('#total').empty();
+} // end clearFunc
