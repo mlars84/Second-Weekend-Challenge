@@ -3,6 +3,7 @@ var express = require( 'express' );
 var app = express();
 var path = require( 'path' );
 var bodyParser = require( 'body-parser' );
+var calcMod = require( './calcMod' );
 
 //globals
 
@@ -16,11 +17,11 @@ app.listen( 3000, function(){
 });
 
 // objectToSend in a POST
-app.post('/calc', function() {
-  res.sendStatus( 200 ):
+app.post( '/calc', function() {
+  res.sendStatus( 200 );
 });
 
 // GET
 app.get('/calc', function(){
-  
+
 });
