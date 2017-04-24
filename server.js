@@ -28,10 +28,11 @@ app.post( '/data', function( req, res ) {
     y: data.yNum,
     op: data.operator
   };
+  res.send(objectToSend);
   console.log(objectToSend);
   res.sendStatus( 200 );
 });
 
 app.get( '/result', function ( req, res ) {
-  res.send(objectToSend);
+  // res.send(objectToSend);
 });

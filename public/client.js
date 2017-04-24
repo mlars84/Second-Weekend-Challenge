@@ -51,5 +51,4 @@ function clearFunc() {
   $( '#inputTwo' ).empty();
   $( '#total' ).empty();
   console.log( 'clearFunc' );
-  total = '';
 }
