@@ -2,11 +2,11 @@ var answer = '';
 
 function calcMod(x, y, op) {
 
-  if ( operatorButton === '+' ){
+  if ( operator === '+' ){
     return (answer = (xNum + yNum));
-  } else if ( operatorButton === '-' ){
+  } else if ( operator === '-' ){
     return (answer = (xNum - yNum));
-  } else if ( operatorButton === '*' ){
+  } else if ( operator === '*' ){
     return (answer = (xNum * yNum));
   } else{
     return (answer = (xNum / yNum));
