@@ -1,54 +1,44 @@
 $( document ).ready( onReady );
-console.log( 'JQ' );
+console.log('JQ');
 
-// event listeners
 function onReady() {
-  operatorFunc();
-  sendUserData();
-  $( '#clearButton' ).on( 'click', clearFunc );
+  console.log('onReady');
+  $('#calculate').on('click', calcIt);
+  $('#clear').on('click', clearFunc);
 } // end onReady
 
-function operatorFunc() {
-  console.log('in operatorFunc');
-  $( '#operatorButton' ).append( '<button id="add" type="button" >+</button>' );
-  $( '#operatorButton').append( '<button id="subtract" type="button" >-</button>' );
-  $( '#operatorButton' ).append( '<button id="multiply" type="button" >*</button>' );
-  $( '#operatorButton' ).append( '<button id="divide" type="button" >/</button>' );
+function calcIt() {
+  console.log('calculate button');
+  var inputOne = $('#inputOne').val();
+  var inputTwo = $('#inputTwo').val();
+  var operator = $('#operator').val();
+
+  var objToSend = {
+    x: inputOne,
+    y: inputTwo,
+    type: operator
+  };
+
+  $.ajax({
+    method: 'POST',
+    url: '/calc',
+    data: objToSend,
+    success: function(response) {
+      console.log('in success', response);
+      displayAnswer(response);
+    }
+  });
+
+} // end calcIt
+
+function displayAnswer(respObj) {
+  console.log('in displayAnswer, respObj=', respObj);
+  $('#answerDiv').text('Result: ' + respObj.answer);
 }
 
-console.log($( '#inputOne' ).val()); // logging undefined
-console.log($( '#inputTwo' ).val()); // logging undefined
-
-
-function sendUserData(){
-  var userInputs = {
-    xNum: $( '#inputOne' ).val(),
-    yNum: $( '#inputTwo' ).val(),
-    operator: $( '#operatorButton' ).text() // can't seem to figure out how to send operator info...
- };
- console.log( userInputs ); // logging the object as {x: "", y "", operator: "+-*/"}
-
- $.ajax({
-   url: '/data',
-   type: 'POST',
-   data: userInputs,
-   success: function( response ){
-     console.log( response ); // logging a response of the object without actual data
-   }
- });
-
- $.ajax({
-   url: '/result',
-   type: 'GET',
-   success: function( response ) {
-     console.log( response );
-   }
-  });
-} // end sendUserData
-
-function clearFunc() {
-  $( '#inputOne' ).empty();
-  $( '#inputTwo' ).empty();
-  $( '#total' ).empty();
-  console.log( 'clearFunc' );
+function clearFunc () {
+  console.log('clear button');
+  $('#inputOne').val('');
+  $('#inputTwo').val('');
+  $('#answerDiv').empty();
 } // end clearFunc

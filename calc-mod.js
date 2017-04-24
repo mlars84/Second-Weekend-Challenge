@@ -1,16 +1,29 @@
-var answer = '';
+var calculateObj = function( objToCalc ) {
 
-function calcMod( x, y, op ) {
+  var x = parseFloat(objToCalc.x);
+  var y = parseFloat(objToCalc.y);
+  var operator = objToCalc.type;
 
-  if ( operator === '+' ){
-    return ( answer = ( xNum + yNum ));
-  } else if ( operator === '-' ){
-    return ( answer = ( xNum - yNum ));
-  } else if ( operator === '*' ){
-    return ( answer = ( xNum * yNum ));
-  } else{
-    return ( answer = ( xNum / yNum ));
+  var finalAnswer = '';
+
+  switch( operator ) {
+    case 'add':
+      finalAnswer = x + y;
+      break;
+    case 'subtract':
+      finalAnswer = x - y;
+      break;
+    case 'multiply':
+      finalAnswer = x * y;
+      break;
+    case 'divide':
+      finalAnswer = x / y;
+      break;
+    default:
+      console.log('That is not an operator!');
   }
-}
+  return finalAnswer;
+};
 
-exports.module = calcMod;
+
+module.exports = calculateObj;

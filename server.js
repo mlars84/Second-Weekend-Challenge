@@ -1,39 +1,24 @@
-// requires
-var express = require( 'express' );
-var app = express();
-var path = require( 'path' );
-var bodyParser = require( 'body-parser' );
-var calcMod = require( './calc-mod' );
+var express = require('express');
+var bodyParser = require('body-parser');
+var calcMe = require('./calc-mod');
 
-//globals
-var xNum = '';
-var yNum = '';
-var operator = '';
-// var userInputs = '';
+var app = express();
 
 // uses
-app.use( express.static( 'public' ) );
-app.use( bodyParser.urlencoded( { extended: true } ) );
+app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-// server
-app.listen( 3000, function(){
-  console.log( 'server up on:', 3000 );
+// POST
+app.post('/calc', function( req, res ) {
+  console.log('in calc post route', req.body);
+
+  var respObj = { answer: calcMe(req.body) };
+
+  res.send( respObj );
+  res.send( 200 );
 });
 
-// objectToSend in POST
-app.post( '/data', function( req, res ) {
-  var data = req.body;
-  var objectToSend = {
-    x: data.xNum,
-    y: data.yNum,
-    op: data.operator
-  };
-  // calcMod( data.xNum, data.yNum, data.operator );
-  res.send( objectToSend );
-  console.log( objectToSend );
-  res.sendStatus( 200 );
-});
-
-app.get( '/result', function ( req, res ) {
-  // res.send(objectToSend);
+app.listen( 3012, function() {
+  console.log('listening on 3012');
 });

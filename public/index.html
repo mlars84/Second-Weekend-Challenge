@@ -10,10 +10,18 @@
   <body>
     <h1>Second Weekend Challenge</h1>
     <h2>Base Mode Calculator</h2>
-    <input id="inputOne" type="text" placeholder="Input One" value="">
-    <div id="operatorButton"></div>
-    <input id="inputTwo" type="text" placeholder="Input Two" value="">
-    <input id="total" type="text" placeholder="result" value="">
-    <button id="clearButton "type="button" name="clear">clear</button>
+    <form>
+      <input id="inputOne" placeholder="First Number" type="number" >
+      <select id="operator">
+        <option value="add">+</option>
+        <option value="subtract">-</option>
+        <option value="multiply">*</option>
+        <option value="divide">/</option>
+      </select>
+      <input id="inputTwo" placeholder="First Number" type="number">
+      <input id="calculate" type="button" value="Calculate">
+      <input id="clear" type="button" value="Clear">
+    </form>
+    <div id="answerDiv"></div>
   </body>
 </html>
