@@ -16,8 +16,8 @@ function operatorFunc() {
   $( '#operatorButton' ).append( '<button id="divide" type="button" >/</button>' );
 }
 
-console.log($( '#inputOne' ).val());
-console.log($( '#inputTwo' ).val());
+console.log($( '#inputOne' ).val()); // logging undefined
+console.log($( '#inputTwo' ).val()); // logging undefined
 
 
 function sendUserData(){
@@ -26,14 +26,14 @@ function sendUserData(){
     yNum: $( '#inputTwo' ).val(),
     operator: $( '#operatorButton' ).text() // can't seem to figure out how to send operator info...
  };
- console.log( userInputs );
+ console.log( userInputs ); // logging the object as {x: "", y "", operator: "+-*/"}
 
  $.ajax({
    url: '/data',
    type: 'POST',
    data: userInputs,
    success: function( response ){
-     console.log( response );
+     console.log( response ); // logging a response of the object without actual data
    }
  });
 
@@ -51,4 +51,4 @@ function clearFunc() {
   $( '#inputTwo' ).empty();
   $( '#total' ).empty();
   console.log( 'clearFunc' );
-}
+} // end clearFunc

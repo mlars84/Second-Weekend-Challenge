@@ -1,6 +1,6 @@
 var answer = '';
 
-function calcMod(x, y, op) {
+function calcMod( x, y, op ) {
 
   if ( operator === '+' ){
     return ( answer = ( xNum + yNum ));

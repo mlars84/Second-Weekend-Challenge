@@ -9,7 +9,7 @@ var calcMod = require( './calc-mod' );
 var xNum = '';
 var yNum = '';
 var operator = '';
-var userInputs = '';
+// var userInputs = '';
 
 // uses
 app.use( express.static( 'public' ) );
@@ -28,8 +28,9 @@ app.post( '/data', function( req, res ) {
     y: data.yNum,
     op: data.operator
   };
-  res.send(objectToSend);
-  console.log(objectToSend);
+  // calcMod( data.xNum, data.yNum, data.operator );
+  res.send( objectToSend );
+  console.log( objectToSend );
   res.sendStatus( 200 );
 });
 
