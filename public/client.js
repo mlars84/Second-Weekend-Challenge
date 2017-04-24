@@ -3,46 +3,43 @@ console.log( 'JQ' );
 
 // event listeners
 function onReady() {
-  $( '#add' ).on( 'click', operatorFunc );
-  $( '#subtract' ).on( 'click', operatorFunc );
-  $( '#multiply' ).on( 'click', operatorFunc );
-  $( '#divide' ).on( 'click', operatorFunc );
-  $( '#equals' ).on( 'click', equalFunc );
+  operatorFunc();
+  $( '#equals' ).on( 'click' );
   $( '#clearButton' ).on( 'click', clearFunc );
 } // end onReady
 
-function operatorFunc(){
+function operatorFunc() {
+  console.log('in operatorFunc');
+  $('#operatorButton').append('<button id="add" type="button" >+</button>');
+  $('#operatorButton').append('<button id="subtract" type="button" >-</button>');
+  $('#operatorButton').append('<button id="multiply" type="button" >*</button>');
+  $('#operatorButton').append('<button id="divide" type="button" >/</button>');
+}
+
+function sendUserData(){
   var userInputs = {
     xNum: $( '#inputOne' ).val(),
     yNum: $( '#inputTwo' ).val(),
-    operator: $(this).on('click')
+    operator: $('#operatorButton').text() // can't seem to figure out how to send operator info...
  };
 
  $.ajax({
-   url: '/calc',
-   method: 'POST',
+   url: '/data',
+   type: 'POST',
    data: userInputs,
-   success: function ( response ) {
-     console.log (response);
-     res.sendStatus( 200 );
+   success: function( response ){
+     console.log( response );
    }
  });
 
  $.ajax({
-   url: '/calc',
-   method: 'GET',
+   url: '/result',
+   type: 'GET',
    success: function( response ) {
-     console.log( response );
+     console.log(response);
    }
- });
-} // end operatorFunc
-
-
-
-
-function equalFunc() {
-
-} // end equalFunc
+  });
+} // end sendUserData
 
 function clearFunc() {
   console.log('clearFunc');

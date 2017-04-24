@@ -1,15 +1,16 @@
-function calcMod() {
-  if ( operator === '+' ){
-    return xNum + yNum;
-  } else if ( operator === '-' ){
-    return xNum - yNum;
-  } else if ( operator === '*' ){
-    return xNum * yNum;
+var answer = '';
+
+function calcMod(x, y, op) {
+
+  if ( operatorButton === '+' ){
+    return (answer = (xNum + yNum));
+  } else if ( operatorButton === '-' ){
+    return (answer = (xNum - yNum));
+  } else if ( operatorButton === '*' ){
+    return (answer = (xNum * yNum));
   } else{
-    return xNum / yNum;
+    return (answer = (xNum / yNum));
   }
 }
-
-
 
 exports.module = calcMod;

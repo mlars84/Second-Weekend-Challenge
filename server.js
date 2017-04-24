@@ -8,26 +8,28 @@ var calcMod = require( './calc-mod' );
 //globals
 var xNum = '';
 var yNum = '';
-var total = '';
+var answer = '';
 
 // uses
 app.use( express.static( 'public' ) );
 app.use( bodyParser.urlencoded( { extended: true } ) );
 
 // server
-app.listen( 3000, function(){
-  console.log( 'server up on:', 3000 );
+app.listen( 3015, function(){
+  console.log( 'server up on:', 3015 );
 });
 
-// objectToSend in a POST
-app.post( '/calc', function( req, res ) {
-  console.log(req.body);
+// objectToSend in POST
+app.post( '/data', function( req, res ) {
   var data = req.body;
-  // total = calcMod(xNum, yNum);
-  res.sendStatus( 200 );
+  objectToSend = {
+    xNum: data.inputOne,
+    yNum: data.inputTwo,
+    operator: data.operatorButtons
+  };
+  console.log(objectToSend);
 });
 
-// GET
-app.get('/calc', function( req, res ){
+app.get( '/result', function ( req, res ) {
 
 });
